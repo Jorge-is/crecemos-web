@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#CD0157">
   <meta property="og:title" content="Crecemos">
   <meta property="og:description" content="Cierra tu día y mira cuánto te queda de verdad. Descarga la app para Android.">
-  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:image" content="https://jorge-is.github.io/crecemos-web/assets/logo.png">
   <link rel="icon" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,20 +76,22 @@
     .btn-ios { background: transparent; color: var(--white); border: 2px dashed rgba(255,255,255,.55); cursor: default; font-size: 19px; min-height: 60px; }
     .nota-so { margin: 4px 0 0; font-size: 15px; color: #FFE3EE; min-height: 1.4em; }
 
-    /* Monto de ejemplo: el lenguaje de la app (“Te queda”) */
-    .tarjeta {
-      position: relative; justify-self: start;
-      background: var(--white); color: var(--ink);
-      border-radius: 24px; padding: 22px 26px 20px;
-      width: min(100%, 340px);
-      box-shadow: 0 24px 48px -18px rgba(60, 0, 28, .55);
+    /* Teléfonos con capturas reales de la app, en abanico diagonal */
+    .telefonos { position: relative; width: min(100%, 440px); aspect-ratio: 1 / 1.2; justify-self: center; }
+    .tel {
+      position: absolute; width: 44%;
+      background: #1B1318; padding: 2.4%;
+      border-radius: 13% / 6.2%;
+      box-shadow: 0 28px 44px -16px rgba(60, 0, 28, .6), inset 0 0 0 1.5px #3A2C34;
     }
-    .tarjeta .logo-tile { position: absolute; right: -14px; top: -34px; width: 92px; height: 92px; border-radius: 24px; box-shadow: 0 12px 24px -10px rgba(60,0,28,.6); transform: rotate(6deg); }
-    .tarjeta p { margin: 0; }
-    .tarjeta .etq { font: 500 15px/1.3 var(--body); color: var(--muted); }
-    .tarjeta .monto { font: 700 52px/1.1 var(--body); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin: 4px 0 8px; }
-    .tarjeta .pie { font-size: 14px; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--line); }
-    .tarjeta .pie b { color: var(--ink); font-weight: 600; }
+    .tel::before { /* cámara frontal */
+      content: ""; position: absolute; z-index: 2; top: 2.6%; left: 50%; translate: -50% 0;
+      width: 4.5%; aspect-ratio: 1; border-radius: 50%; background: #1B1318;
+    }
+    .tel img { width: 100%; height: auto; border-radius: 11% / 5.2%; background: #fff; }
+    .tel-resumen { left: 0; top: 17%; rotate: -9deg; z-index: 1; }
+    .tel-inicio { left: 26%; top: 3%; width: 48%; rotate: -2deg; z-index: 3; }
+    .tel-asistente { left: 56%; top: 19%; rotate: 8deg; z-index: 2; }
 
     /* ---------- Secciones ---------- */
     section { padding: 64px 0; }
@@ -116,19 +118,22 @@
 
     footer { padding: 36px 0 48px; font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); }
     footer p { margin: 0 0 6px; max-width: 64ch; }
+    footer strong { color: var(--ink); font-weight: 600; }
+    /* El PNG es cuadrado con mucho aire blanco: se recorta al contenido (x 14%-87%, y 31%-67%). */
+    .logo-pie { position: relative; width: 224px; height: 118px; overflow: hidden; margin: 0 0 12px; }
+    .logo-pie img { position: absolute; width: 292px; max-width: none; left: -38px; top: -84px; }
 
     /* ---------- Escritorio ---------- */
     @media (min-width: 820px) {
       .hero { padding: 56px 0 88px; }
       .hero .wrap { grid-template-columns: 1.25fr 1fr; align-items: center; gap: 56px; }
       .hero .marca { grid-column: 1 / -1; }
-      .tarjeta { justify-self: center; transform: rotate(-2deg); }
       .funciones li { grid-template-columns: 300px 1fr; gap: 32px; align-items: baseline; }
     }
 
-    /* Un solo momento de movimiento: la tarjeta aparece al cargar */
+    /* Un solo momento de movimiento: los teléfonos aparecen al cargar */
     @media (prefers-reduced-motion: no-preference) {
-      .tarjeta { animation: sube .7s .15s cubic-bezier(.2,.8,.2,1) both; }
+      .telefonos { animation: sube .7s .15s cubic-bezier(.2,.8,.2,1) both; }
       @keyframes sube { from { opacity: 0; translate: 0 24px; } to { opacity: 1; translate: 0 0; } }
     }
   </style>
@@ -141,7 +146,7 @@
 
       <div>
         <h1>Cierra tu día y mira cuánto te queda de verdad.</h1>
-        <p class="sub">La app para vender sin hacer cuentas de memoria. Funciona sin internet y tus datos se quedan en tu teléfono.</p>
+        <p class="sub">Anota tus ventas y gastos sin internet. Tus datos se guardan en tu teléfono.</p>
 
         <div class="descargas">
           <a class="btn btn-android" id="btn-android" href="https://github.com/Jorge-is/crecemos-web/releases/latest/download/crecemos.apk" download>
@@ -155,11 +160,10 @@
         </div>
       </div>
 
-      <div class="tarjeta" aria-label="Ejemplo de la pantalla de inicio de Crecemos">
-        <img class="logo-tile" src="assets/logo.png" alt="Logo de Crecemos">
-        <p class="etq">Te queda</p>
-        <p class="monto">S/ 86,50</p>
-        <p class="pie"><b>Vendiste S/ 240</b> y gastaste S/ 153,50. Ejemplo con datos de muestra.</p>
+      <div class="telefonos" role="img" aria-label="Pantallas de Crecemos: Resumen, Inicio y Asistente">
+        <div class="tel tel-resumen"><img src="assets/screens/resumen.jpg" alt="" width="540" height="1170" loading="lazy"></div>
+        <div class="tel tel-asistente"><img src="assets/screens/asistente.jpg" alt="" width="540" height="1170" loading="lazy"></div>
+        <div class="tel tel-inicio"><img src="assets/screens/inicio.jpg" alt="" width="540" height="1170"></div>
       </div>
     </div>
   </header>
@@ -167,13 +171,13 @@
   <main>
     <section>
       <div class="wrap">
-        <h2>Hecha con un vendedor de anticuchos</h2>
-        <p class="lead">Freddy compra mercadería cada 2 días y lleva todo en la cabeza. Crecemos le muestra lo que de verdad ganó, sin pedirle papeles.</p>
+        <h2>Hecha para vendedores como Freddy</h2>
+        <p class="lead">Nació de entrevistar a un vendedor de anticuchos, a quien aquí llamamos Freddy. Compra mercadería cada 2 días y lleva todo en la cabeza. Crecemos le muestra lo que de verdad ganó.</p>
         <ul class="funciones">
-          <li><h3>Cierra tu día</h3><p>Anota lo que preparaste, lo que sobró, el Yape y los gastos. La app calcula tu venta.</p></li>
+          <li><h3>Cierra tu día</h3><p>Anota lo que preparaste, lo que sobró, el Yape y los gastos. La app calcula tu venta, y todo esto funciona sin internet.</p></li>
           <li><h3>Qué te deja cada producto</h3><p>El que más vendes no siempre es el que más ganas. Míralo producto por producto.</p></li>
-          <li><h3>Pregúntale a tus datos</h3><p>Escribe “¿qué día me va peor?” y el asistente responde, incluso sin internet.</p></li>
-          <li><h3>Tu reporte con código QR</h3><p>Un resumen de tu negocio para mostrar a una entidad financiera. Lo compartes solo si tú quieres.</p></li>
+          <li><h3>Pregúntale a tus datos</h3><p>Escribe “¿qué día me va peor?” y te responde con tus cifras. Con internet también conversa contigo; sin internet, responde las preguntas básicas.</p></li>
+          <li><h3>Tu reporte con código QR</h3><p>Un PDF con tus ventas y tu resultado para mostrar a una entidad financiera. Lo compartes solo si tú quieres. Para crear el enlace con QR necesitas internet.</p></li>
         </ul>
       </div>
     </section>
@@ -185,7 +189,7 @@
         <ol class="pasos">
           <li><div><h3>Descarga el archivo</h3><p>Toca “Descargar para Android”. Si el navegador avisa que el archivo puede ser dañino, elige “Descargar de todos modos”.</p></div></li>
           <li><div><h3>Permite la instalación</h3><p>Al abrirlo, Android te pedirá permiso para instalar apps desde este navegador. Actívalo y vuelve atrás.</p></div></li>
-          <li><div><h3>Instala y abre Crecemos</h3><p>Toca “Instalar”. Cuando termine, ábrela y empieza con los datos de ejemplo para probarla.</p></div></li>
+          <li><div><h3>Instala y abre Crecemos</h3><p>Toca “Instalar”. Cuando termine, ábrela. Para probarla con datos de ejemplo, cárgalos desde Perfil (esa vez necesitas internet).</p></div></li>
         </ol>
         <p class="aviso"><b>¿Por qué sale un aviso de seguridad?</b> La app aún no está en Play Store. Es un proyecto académico y el archivo viene directo de esta página.</p>
       </div>
@@ -194,8 +198,10 @@
 
   <footer>
     <div class="wrap">
-      <p>Crecemos 1.0 · Proyecto académico del React Native Lab.</p>
-      <p>Es una referencia para entender tu negocio. No es una aprobación de crédito ni una calificación.</p>
+      <div class="logo-pie"><img src="assets/crecemos_white_logo.png" alt="Crecemos"></div>
+      <p><strong>Hecho por el grupo 1.</strong> Proyecto del React Native Lab.</p>
+      <p>Crecemos 1.0 para Android 7 o superior.</p>
+      <p>Las cifras de la app te ayudan a decidir mejor. No reemplazan el análisis de ninguna entidad financiera.</p>
     </div>
   </footer>
 
