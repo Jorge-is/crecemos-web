@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crecemos: descarga la app</title>
+  <meta name="description" content="Crecemos es la app que le dice al vendedor de la calle cuánto le queda de verdad. Descarga el APK para Android.">
+  <meta name="theme-color" content="#CD0157">
+  <meta property="og:title" content="Crecemos">
+  <meta property="og:description" content="Cierra tu día y mira cuánto te queda de verdad. Descarga la app para Android.">
+  <meta property="og:image" content="assets/logo.png">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --magenta: #CD0157;
+      --magenta-deep: #A80147;
+      --plum: #8A0048;
+      --amber: #FFA400;
+      --amber-soft: #FFF2DB;
+      --ink: #1A1016;
+      --muted: #6B5A62;
+      --surface: #FAF5F7;
+      --line: #E4D7DE;
+      --white: #FFFFFF;
+      --display: "Outfit", "Segoe UI", system-ui, sans-serif;
+      --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font: 400 18px/1.6 var(--body);
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+    .wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: var(--magenta);
+      color: var(--white);
+      padding: 40px 0 56px;
+      overflow: hidden;
+    }
+    .hero .wrap { display: grid; gap: 40px; }
+    .marca { display: flex; align-items: center; gap: 12px; font: 700 22px/1 var(--display); letter-spacing: -0.2px; }
+    .marca img { width: 44px; height: 44px; border-radius: 12px; }
+
+    h1 {
+      margin: 0;
+      font: 700 clamp(38px, 9.5vw, 68px)/1.04 var(--display);
+      letter-spacing: -0.03em;
+      max-width: 14ch;
+    }
+    .sub { margin: 20px 0 0; font-size: 19px; max-width: 34ch; color: #FFE3EE; }
+
+    .descargas { display: grid; gap: 12px; margin-top: 32px; max-width: 440px; }
+    .btn {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 72px; padding: 14px 22px; border-radius: 18px;
+      text-decoration: none; border: 0; cursor: pointer;
+      font: 700 22px/1.15 var(--display);
+    }
+    .btn small { display: block; font: 500 14px/1.3 var(--body); opacity: .85; margin-top: 3px; }
+    .btn svg { width: 30px; height: 30px; flex: none; }
+    .btn-android { background: var(--amber); color: var(--ink); box-shadow: 0 6px 0 var(--plum); transition: transform .12s, box-shadow .12s; }
+    .btn-android:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--plum); }
+    .btn-android:active { transform: translateY(6px); box-shadow: 0 0 0 var(--plum); }
+    .btn-ios { background: transparent; color: var(--white); border: 2px dashed rgba(255,255,255,.55); cursor: default; font-size: 19px; min-height: 60px; }
+    .nota-so { margin: 4px 0 0; font-size: 15px; color: #FFE3EE; min-height: 1.4em; }
+
+    /* Monto de ejemplo: el lenguaje de la app (“Te queda”) */
+    .tarjeta {
+      position: relative; justify-self: start;
+      background: var(--white); color: var(--ink);
+      border-radius: 24px; padding: 22px 26px 20px;
+      width: min(100%, 340px);
+      box-shadow: 0 24px 48px -18px rgba(60, 0, 28, .55);
+    }
+    .tarjeta .logo-tile { position: absolute; right: -14px; top: -34px; width: 92px; height: 92px; border-radius: 24px; box-shadow: 0 12px 24px -10px rgba(60,0,28,.6); transform: rotate(6deg); }
+    .tarjeta p { margin: 0; }
+    .tarjeta .etq { font: 500 15px/1.3 var(--body); color: var(--muted); }
+    .tarjeta .monto { font: 700 52px/1.1 var(--body); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin: 4px 0 8px; }
+    .tarjeta .pie { font-size: 14px; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--line); }
+    .tarjeta .pie b { color: var(--ink); font-weight: 600; }
+
+    /* ---------- Secciones ---------- */
+    section { padding: 64px 0; }
+    h2 { margin: 0 0 12px; font: 700 clamp(28px, 6vw, 40px)/1.12 var(--display); letter-spacing: -0.02em; max-width: 20ch; }
+    .lead { margin: 0 0 36px; color: var(--muted); max-width: 52ch; }
+
+    .funciones { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .funciones li { display: grid; gap: 4px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .funciones h3 { margin: 0; font: 600 21px/1.25 var(--display); }
+    .funciones p { margin: 0; color: var(--muted); max-width: 56ch; }
+
+    .instalar { background: var(--surface); }
+    .pasos { list-style: none; counter-reset: paso; margin: 0 0 28px; padding: 0; display: grid; gap: 20px; }
+    .pasos li { counter-increment: paso; display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+    .pasos li::before {
+      content: counter(paso);
+      display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+      background: var(--magenta); color: var(--white); font: 700 20px/1 var(--display);
+    }
+    .pasos h3 { margin: 0 0 2px; font: 600 20px/1.3 var(--display); }
+    .pasos p { margin: 0; color: var(--muted); max-width: 52ch; }
+    .aviso { background: var(--amber-soft); border-radius: 16px; padding: 16px 20px; max-width: 60ch; font-size: 16px; }
+    .aviso b { font-weight: 600; }
+
+    footer { padding: 36px 0 48px; font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); }
+    footer p { margin: 0 0 6px; max-width: 64ch; }
+
+    /* ---------- Escritorio ---------- */
+    @media (min-width: 820px) {
+      .hero { padding: 56px 0 88px; }
+      .hero .wrap { grid-template-columns: 1.25fr 1fr; align-items: center; gap: 56px; }
+      .hero .marca { grid-column: 1 / -1; }
+      .tarjeta { justify-self: center; transform: rotate(-2deg); }
+      .funciones li { grid-template-columns: 300px 1fr; gap: 32px; align-items: baseline; }
+    }
+
+    /* Un solo momento de movimiento: la tarjeta aparece al cargar */
+    @media (prefers-reduced-motion: no-preference) {
+      .tarjeta { animation: sube .7s .15s cubic-bezier(.2,.8,.2,1) both; }
+      @keyframes sube { from { opacity: 0; translate: 0 24px; } to { opacity: 1; translate: 0 0; } }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="marca"><img src="assets/favicon.png" alt="" width="44" height="44">Crecemos</div>
+
+      <div>
+        <h1>Cierra tu día y mira cuánto te queda de verdad.</h1>
+        <p class="sub">La app para vender sin hacer cuentas de memoria. Funciona sin internet y tus datos se quedan en tu teléfono.</p>
+
+        <div class="descargas">
+          <a class="btn btn-android" id="btn-android" href="https://github.com/Jorge-is/crecemos-web/releases/latest/download/crecemos.apk" download>
+            <span>Descargar para Android<small>Archivo APK · Android 7 o superior</small></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
+          </a>
+          <div class="btn btn-ios" role="note" aria-label="Versión para iPhone: próximamente">
+            <span>iPhone: próximamente</span>
+          </div>
+          <p class="nota-so" id="nota-so" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="tarjeta" aria-label="Ejemplo de la pantalla de inicio de Crecemos">
+        <img class="logo-tile" src="assets/logo.png" alt="Logo de Crecemos">
+        <p class="etq">Te queda</p>
+        <p class="monto">S/ 86,50</p>
+        <p class="pie"><b>Vendiste S/ 240</b> y gastaste S/ 153,50. Ejemplo con datos de muestra.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <h2>Hecha con un vendedor de anticuchos</h2>
+        <p class="lead">Freddy compra mercadería cada 2 días y lleva todo en la cabeza. Crecemos le muestra lo que de verdad ganó, sin pedirle papeles.</p>
+        <ul class="funciones">
+          <li><h3>Cierra tu día</h3><p>Anota lo que preparaste, lo que sobró, el Yape y los gastos. La app calcula tu venta.</p></li>
+          <li><h3>Qué te deja cada producto</h3><p>El que más vendes no siempre es el que más ganas. Míralo producto por producto.</p></li>
+          <li><h3>Pregúntale a tus datos</h3><p>Escribe “¿qué día me va peor?” y el asistente responde, incluso sin internet.</p></li>
+          <li><h3>Tu reporte con código QR</h3><p>Un resumen de tu negocio para mostrar a una entidad financiera. Lo compartes solo si tú quieres.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="instalar" id="instalar">
+      <div class="wrap">
+        <h2>Cómo instalarla en tu Android</h2>
+        <p class="lead">Es un archivo que se instala a mano, así que Android te va a pedir un permiso. Son tres pasos.</p>
+        <ol class="pasos">
+          <li><div><h3>Descarga el archivo</h3><p>Toca “Descargar para Android”. Si el navegador avisa que el archivo puede ser dañino, elige “Descargar de todos modos”.</p></div></li>
+          <li><div><h3>Permite la instalación</h3><p>Al abrirlo, Android te pedirá permiso para instalar apps desde este navegador. Actívalo y vuelve atrás.</p></div></li>
+          <li><div><h3>Instala y abre Crecemos</h3><p>Toca “Instalar”. Cuando termine, ábrela y empieza con los datos de ejemplo para probarla.</p></div></li>
+        </ol>
+        <p class="aviso"><b>¿Por qué sale un aviso de seguridad?</b> La app aún no está en Play Store. Es un proyecto académico y el archivo viene directo de esta página.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Crecemos 1.0 · Proyecto académico del React Native Lab.</p>
+      <p>Es una referencia para entender tu negocio. No es una aprobación de crédito ni una calificación.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Aviso según el teléfono: en iPhone no se puede instalar un APK.
+    (function () {
+      var ua = navigator.userAgent || '';
+      var nota = document.getElementById('nota-so');
+      if (/iPhone|iPad|iPod/i.test(ua)) {
+        nota.textContent = 'Tu iPhone no puede instalar este archivo. La versión para iPhone viene pronto.';
+        document.getElementById('btn-android').setAttribute('aria-disabled', 'true');
+      } else if (!/Android/i.test(ua)) {
+        nota.textContent = 'Abre esta página desde tu teléfono Android para instalarla.';
+      }
+    })();
+  </script>
+</body>
+</html>
