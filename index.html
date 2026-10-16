@@ -50,8 +50,8 @@
       overflow: hidden;
     }
     .hero .wrap { display: grid; gap: 40px; }
-    .marca { display: flex; align-items: center; gap: 12px; font: 700 22px/1 var(--display); letter-spacing: -0.2px; }
-    .marca img { width: 44px; height: 44px; border-radius: 12px; }
+    .marca { display: flex; align-items: center; }
+    .marca img { display: block; height: 76px; width: auto; }
 
     h1 {
       margin: 0;
@@ -119,9 +119,8 @@
     footer { padding: 36px 0 48px; font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); text-align: center; }
     footer p { margin: 0 auto 6px; max-width: 64ch; }
     footer strong { color: var(--ink); font-weight: 600; }
-    /* El PNG es cuadrado con mucho aire blanco: se recorta al contenido (x 14%-87%, y 31%-67%). */
-    .logo-pie { position: relative; width: 224px; height: 118px; overflow: hidden; margin: 0 auto 12px; }
-    .logo-pie img { position: absolute; width: 292px; max-width: none; left: -38px; top: -84px; }
+    .logo-pie { width: 190px; margin: 0 auto 12px; }
+    .logo-pie img { display: block; width: 100%; height: auto; }
 
     /* ---------- Escritorio ---------- */
     @media (min-width: 820px) {
@@ -142,7 +141,7 @@
 
   <header class="hero">
     <div class="wrap">
-      <div class="marca"><img src="assets/favicon.png" alt="" width="44" height="44">Crecemos</div>
+      <div class="marca"><img src="assets/logo-header.png" alt="Crecemos" width="560" height="286"></div>
 
       <div>
         <h1>Cierra tu día y mira cuánto te queda de verdad.</h1>
@@ -198,7 +197,7 @@
 
   <footer>
     <div class="wrap">
-      <div class="logo-pie"><img src="assets/crecemos_white_logo.png" alt="Crecemos"></div>
+      <div class="logo-pie"><img src="assets/logo-footer.png" alt="Crecemos" width="460" height="231" loading="lazy"></div>
       <p><strong>Desarrollado por el Grupo 1.</strong> Proyecto final del Programa React Native Lab.</p>
       <p>Crecemos 1.0</p>
       <p>Las cifras de la app te ayudan a decidir mejor. No reemplazan el análisis de ninguna entidad financiera.</p>
